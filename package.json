@@ -1,0 +1,43 @@
+{
+  "name": "ora-js",
+  "version": "0.0.1",
+  "description": "Javascript API for setting up schedules, time-tables, event agendas etc.",
+  "main": "ora-js.js",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.7.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.2",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-requirejs": "^0.4.4",
+    "grunt-sass": "^1.1.0",
+    "hamjest": "^2.13.0",
+    "mocha": "^2.4.5",
+    "require": "^2.4.20"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jpvee/ora-js.git"
+  },
+  "keywords": [
+    "schedule",
+    "time-table",
+    "time",
+    "table",
+    "grid",
+    "calendar",
+    "agenda"
+  ],
+  "author": "jpvee",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/jpvee/ora-js/issues"
+  },
+  "homepage": "https://github.com/jpvee/ora-js"
+}
