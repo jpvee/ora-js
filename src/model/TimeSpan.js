@@ -1,3 +1,5 @@
+if (typeof define !== 'function') {var define = require('amdefine')(module) }
+
 define("model/TimeSpan", ["model/Dimension"], function() {
 
   var Dimension = require("model/Dimension");

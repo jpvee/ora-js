@@ -1,3 +1,15 @@
+var requirejs = require('requirejs');
+requirejs.config({nodeRequire: require});
+
+//requirejs(['../src/utils'], function(utils) {
+//
+//  suite('utils', function() {
+//    test('should always work', function() {
+//      assert.equal(1, 1);
+//    })
+//  })
+//
+//});
 var Dimension = require('../../src/model/Dimension');
 
 var __ = require('hamjest');
