@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Javascript API for setting up schedules, time-tables, event agendas etc.",
   "main": "ora-js.js",
-  "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.7.0",
@@ -14,10 +13,11 @@
     "grunt-sass": "^1.1.0",
     "hamjest": "^2.13.0",
     "mocha": "^2.4.5",
-    "require": "^2.4.20"
+    "require": "^2.4.20",
+    "amdefine": ">=0.1.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --reporter spec test/{,*/}*.js"
   },
   "repository": {
     "type": "git",

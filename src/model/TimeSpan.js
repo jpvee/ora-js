@@ -1,12 +1,23 @@
 if (typeof define !== 'function') {var define = require('amdefine')(module) }
 
-define("model/TimeSpan", ["model/Dimension"], function() {
+define(["./Dimension"], function() {
 
-  var Dimension = require("model/Dimension");
+  var Dimension = require("./Dimension");
 
-  TimeSpan = function(startTime, endTime) {
-    this.startTime = startTime;
-    this.endTime = endTime;
+  var my = {};
+
+  var TimeSpan = function(name, startTime, endTime) {
+    Dimension.constructor(name);
+    my.startTime = startTime;
+    my.endTime = endTime;
+  }
+
+  TimeSpan.prototype = new Dimension();
+  TimeSpan.prototype.getStartTime = function() {
+    return my.startTime;
+  }
+  TimeSpan.prototype.getEndTime = function() {
+    return my.endTime;
   }
 
   return TimeSpan;
