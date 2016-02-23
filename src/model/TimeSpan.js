@@ -1,13 +1,13 @@
 if (typeof define !== 'function') {var define = require('amdefine')(module) }
 
-define(["./Dimension"], function() {
+define('model/TimeSpan', ["model/Dimension"], function() {
 
-  var Dimension = require("./Dimension");
+ var Dimension = require("model/Dimension");
 
   var my = {};
 
   var TimeSpan = function(name, startTime, endTime) {
-    Dimension.constructor(name);
+    Dimension.call(this, name);
     my.startTime = startTime;
     my.endTime = endTime;
   }

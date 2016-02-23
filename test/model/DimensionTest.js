@@ -1,9 +1,25 @@
-var Dimension = require('../../src/model/Dimension');
+var requirejs = require("requirejs");
+
+requirejs.config({
+  baseUrl: 'src',
+  nodeRequire: require
+});
 
 var __ = require('hamjest');
 
 describe('DimensionTest', function() {
-  describe('testConstruct', function () {
+
+  var Dimension;
+
+  before(function (done) {
+    requirejs(['model/Dimension'], function() {
+      Dimension = requirejs('model/Dimension');
+      done();
+    })
+  });
+
+  describe('#testConstruct', function () {
+
     it('should correctly construct Dimension instance', function () {
 
       var dimension = new Dimension("Test");
@@ -11,5 +27,7 @@ describe('DimensionTest', function() {
       __.assertThat(dimension.getName(), __.is("Test"));
 
     });
+
   });
+
 });

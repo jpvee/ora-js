@@ -1,10 +1,27 @@
-var Dimension = require('../../src/model/Dimension');
-var TimeSpan = require('../../src/model/TimeSpan');
+var requirejs = require("requirejs");
+
+requirejs.config({
+  baseUrl: 'src',
+  nodeRequire: require
+});
 
 var __ = require('hamjest');
 
 describe('TimeSpanTest', function() {
-  describe('testConstruct', function () {
+
+  var Dimension;
+  var TimeSpan;
+
+  before(function (done) {
+    requirejs(['model/Dimension', 'model/TimeSpan'], function() {
+      Dimension = requirejs('model/Dimension');
+      TimeSpan = requirejs('model/TimeSpan');
+      done();
+    })
+  });
+
+  describe('#testConstruct', function () {
+
     it('should correctly construct TimeSpan instance', function () {
 
       var start = new Date(2, 19, 2016, 8, 13, 0); // Feb. 19, 2016, 08:13:00 a.m.
@@ -19,5 +36,7 @@ describe('TimeSpanTest', function() {
       __.assertThat(timeSpan.getEndTime(), __.is(null));
 
     });
+
   });
+
 });

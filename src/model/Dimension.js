@@ -1,6 +1,6 @@
 if (typeof define !== 'function') {var define = require('amdefine')(module) }
 
-define(function() {
+define('model/Dimension',[], function() {
 
   var my = {}
 
