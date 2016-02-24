@@ -14,7 +14,7 @@ define('model/TimeSpan', ["model/Dimension"], function() {
 
   TimeSpan.prototype = new Dimension();
   TimeSpan.prototype.getStartTime = function() {
-    return my.startTime;
+    return my.width;
   }
   TimeSpan.prototype.getEndTime = function() {
     return my.endTime;

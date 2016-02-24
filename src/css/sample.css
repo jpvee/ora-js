@@ -1,0 +1,13 @@
+
+h4 {
+    text-align: center;
+}
+
+#sample-schedule {
+    width: 1200px;
+    height: 600px;
+    border: 1px solid black;
+    margin: 10px auto;
+    position: relative;
+    display: block;
+}
