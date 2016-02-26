@@ -4,9 +4,11 @@ define('view/OraTable', [], function() {
 
   var my = {};
 
-  var OraTable = function(width, height) {
-    my.width = width;
-    my.height = height;
+  var OraTable = function(attrTable, attrX, attrY, attrDef) {
+    my.width = attrTable['width'] || attrDef['width'];
+    my.height = attrTable['height'] || attrDef['height'];
+    my.axisX = new Axis(attrX);
+    my.axisY = new Axis(attrY);
   }
 
   OraTable.prototype.getWidth = function() {

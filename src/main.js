@@ -17,7 +17,10 @@ require(['model/Dimension', 'model/TimeSpan', 'view/OraTable'], function() {
     var attrTable = {};
     var attrX = {};
     var attrY = {};
-    var attrDef = {};
+    var attrDef = {
+      'width' : $(this).width(),
+      'height' : $(this).height()
+    };
 
     $.each(this.attributes, function (i, attr) {
       if (attr.name.startsWith('data-orajs-x-')) {
@@ -36,9 +39,7 @@ require(['model/Dimension', 'model/TimeSpan', 'view/OraTable'], function() {
     console.log(JSON.stringify(attrY));
     console.log(JSON.stringify(attrDef));
 
-    var oraTable = new OraTable($(this).width(), $(this).height());
-
-    alert (oraTable.getWidth() + "-" + oraTable.getHeight());
+    var oraTable = new OraTable(attrTable, attrX, attrY, attrDef);
 
 
 

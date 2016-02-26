@@ -9,5 +9,11 @@ h4 {
     border: 1px solid black;
     margin: 10px auto;
     position: relative;
-    display: block;
+}
+
+.orajs-top-row {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid #dddddd;
 }
