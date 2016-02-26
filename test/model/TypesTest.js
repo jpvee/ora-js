@@ -14,9 +14,11 @@ describe('TypesTest', function() {
 
   var Types;
   var moment;
+  var DateType;
 
   before(function (done) {
-    requirejs(['model/Types'], function() {
+    requirejs(['model/Types', 'model/DateType'], function() {
+      DateType = requirejs('model/DateType');
       Types = requirejs('model/Types');
       moment = requirejs('moment');
       done();
@@ -27,7 +29,7 @@ describe('TypesTest', function() {
 
     it('should correctly choose the type depending on the parameters', function () {
 
-      __.assertThat(Types.getType('date'), __.is(Types.DateType));
+      __.assertThat(Types.getType('date'), __.is(DateType));
       __.assertThat(Types.getType('time'), __.is(Types.TimeType));
       __.assertThat(Types.getType('enum'), __.is(Types.EnumType));
 
@@ -48,7 +50,7 @@ describe('TypesTest', function() {
     it('should correctly compute the entries of a date type schedule', function() {
 
       var attr = {'start' : '2016-04-13', 'end' : '2016-04-19'};
-      var entries = Types.DateType.getEntries(attr);
+      var entries = DateType.getEntries(attr);
       var df = 'YYYY-MM-DD HH:mm:ss';
 
       __.assertThat(entries, __.defined());
