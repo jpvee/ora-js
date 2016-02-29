@@ -12,7 +12,7 @@ describe('DimensionTest', function() {
   var Dimension;
 
   before(function (done) {
-    requirejs(['model/Dimension'], function() {
+    requirejs([], function() {
       Dimension = requirejs('model/Dimension');
       done();
     })

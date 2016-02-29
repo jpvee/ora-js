@@ -39,7 +39,8 @@ require(['model/Dimension', 'model/TimeSpan', 'view/OraTable'], function() {
     console.log(JSON.stringify(attrY));
     console.log(JSON.stringify(attrDef));
 
-    var oraTable = new OraTable(attrTable, attrX, attrY, attrDef);
+    var oraTable = new OraTable(this, attrTable, attrX, attrY, attrDef);
+    oraTable.drawColumns()
 
 
 

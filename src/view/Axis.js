@@ -7,10 +7,10 @@ define('view/Axis', ['model/Types'], function() {
   var my = {};
 
   var Axis = function(attr) {
-    my.type = attr.type;
+    my.type = Types.getType(attr.type);
     my.start = attr.start;
     my.end = attr.end;
-    my.entries = Types.getType(attr.type).getEntries();
+    my.entries = my.type.getEntries();
   }
 
   Axis.prototype.getType = function() {

@@ -13,7 +13,7 @@ describe('TimeSpanTest', function() {
   var TimeSpan;
 
   before(function (done) {
-    requirejs(['model/Dimension', 'model/TimeSpan'], function() {
+    requirejs([], function() {
       Dimension = requirejs('model/Dimension');
       TimeSpan = requirejs('model/TimeSpan');
       done();

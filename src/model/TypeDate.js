@@ -1,13 +1,13 @@
 if (typeof define !== 'function') {var define = require('amdefine')(module) }
 
-define('model/DateType', ['moment'], function() {
+define('model/TypeDate', [], function() {
 
   var moment = require('moment');
 
-  var DateType = function() {
+  var TypeDate = function() {
   };
 
-  DateType.getEntries = function(attr) {
+  TypeDate.getEntries = function(attr) {
     var entries = [];
     var start = moment(attr.start);
     var end = moment(attr.end);
@@ -20,7 +20,7 @@ define('model/DateType', ['moment'], function() {
     return entries;
   };
 
-  return DateType;
+  return TypeDate;
 
 });
 

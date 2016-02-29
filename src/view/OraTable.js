@@ -4,7 +4,8 @@ define('view/OraTable', [], function() {
 
   var my = {};
 
-  var OraTable = function(attrTable, attrX, attrY, attrDef) {
+  var OraTable = function(tableElement, attrTable, attrX, attrY, attrDef) {
+    my.tableElement = tableElement;
     my.width = attrTable['width'] || attrDef['width'];
     my.height = attrTable['height'] || attrDef['height'];
     my.axisX = new Axis(attrX);

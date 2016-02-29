@@ -13,14 +13,16 @@ var __ = require('hamjest');
 describe('TypesTest', function() {
 
   var Types;
-  var moment;
-  var DateType;
+  var TypeDate;
+  var TypeTime;
+  var TypeEnum;
 
   before(function (done) {
-    requirejs(['model/Types', 'model/DateType'], function() {
-      DateType = requirejs('model/DateType');
+    requirejs([], function() {
       Types = requirejs('model/Types');
-      moment = requirejs('moment');
+      TypeDate = requirejs('model/TypeDate');
+      TypeTime = requirejs('model/TypeTime');
+      TypeEnum = requirejs('model/TypeEnum');
       done();
     })
   });
@@ -29,9 +31,9 @@ describe('TypesTest', function() {
 
     it('should correctly choose the type depending on the parameters', function () {
 
-      __.assertThat(Types.getType('date'), __.is(DateType));
-      __.assertThat(Types.getType('time'), __.is(Types.TimeType));
-      __.assertThat(Types.getType('enum'), __.is(Types.EnumType));
+      __.assertThat(Types.getType('date'), __.is(TypeDate));
+      __.assertThat(Types.getType('time'), __.is(TypeTime));
+      __.assertThat(Types.getType('enum'), __.is(TypeEnum));
 
       try {
         __.assertThat(Types.getType('null'), __.is(null));
@@ -40,32 +42,6 @@ describe('TypesTest', function() {
         __.assertThat(err, __.instanceOf(RangeError));
         __.assertThat(err.message, __.is("Only 'time', 'date' or 'enum' are allowed as parameters."));
       }
-
-    });
-
-  });
-
-  describe('#testDateType', function() {
-
-    it('should correctly compute the entries of a date type schedule', function() {
-
-      var attr = {'start' : '2016-04-13', 'end' : '2016-04-19'};
-      var entries = DateType.getEntries(attr);
-      var df = 'YYYY-MM-DD HH:mm:ss';
-
-      __.assertThat(entries, __.defined());
-      __.assertThat(entries, __.not(null));
-      __.assertThat(entries, __.array());
-      __.assertThat(entries.length, __.is(7));
-
-      var start = entries[0];
-      var end = entries[6];
-
-      __.assertThat(start, __.not(null));
-      __.assertThat(start, __.instanceOf(moment));
-
-      var startFmt = moment(start).format(df);
-      __.assertThat(startFmt, __.is('2016-04-13 00:00:00'));
 
     });
 
