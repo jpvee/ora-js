@@ -1,16 +1,17 @@
 if (typeof define !== 'function') {var define = require('amdefine')(module) }
 
-define('view/Axis', ['model/Types'], function() {
+define('view/Axis', [], function() {
 
-  Types = require("model/Types");
-
-  var my = {};
 
   var Axis = function(attr) {
+
+    var Types = require("model/Types");
+
+    var my = {};
     my.type = Types.getType(attr.type);
     my.start = attr.start;
     my.end = attr.end;
-    my.entries = my.type.getEntries();
+    my.entries = my.type.getEntries(attr);
   }
 
   Axis.prototype.getType = function() {

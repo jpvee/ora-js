@@ -3,10 +3,11 @@ require.config({
 	shim: {
 	},
 	paths: {
+    'moment' : '../node_modules/moment/moment'
 	}
 });
 
-require(['model/Dimension', 'model/TimeSpan', 'view/OraTable'], function() {
+require(['model/Dimension', 'model/TimeSpan', 'view/OraTable', 'model/Types'], function() {
 
   var Dimension = require('model/Dimension');
   var TimeSpan = require('model/TimeSpan');

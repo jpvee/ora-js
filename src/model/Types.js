@@ -1,6 +1,6 @@
 if (typeof define !== 'function') {var define = require('amdefine')(module) }
 
-define('model/Types', [], function() {
+define('model/Types', ['model/TypeDate', 'model/TypeTime', 'model/TypeEnum'], function() {
 
   var TypeDate = require('model/TypeDate');
   var TypeTime = require('model/TypeTime');

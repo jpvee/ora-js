@@ -1,6 +1,6 @@
 if (typeof define !== 'function') {var define = require('amdefine')(module) }
 
-define('model/TypeDate', [], function() {
+define('model/TypeDate', ['moment'], function() {
 
   var moment = require('moment');
 
