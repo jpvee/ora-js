@@ -1,19 +1,22 @@
 
 h4 {
-    text-align: center;
+  text-align: center;
 }
 
 #sample-schedule {
-    width: 1200px;
-    height: 600px;
-    border: 1px solid black;
-    margin: 10px auto;
-    position: relative;
+  width: 1200px;
+  height: 600px;
+  border: 1px solid black;
+  margin: 10px auto;
+  position: relative;
 }
 
-.orajs-top-row {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    border-bottom: 1px solid #dddddd;
+.orajs-col {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-left: 1px solid #c0c0c0;
+  text-align: center;
+  font-weight: bold;
+  line-height: 36px;
 }

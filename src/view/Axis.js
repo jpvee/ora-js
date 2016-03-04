@@ -7,27 +7,18 @@ define('view/Axis', [], function() {
 
     var Types = require("model/Types");
 
-    var my = {};
-    my.type = Types.getType(attr.type);
-    my.start = attr.start;
-    my.end = attr.end;
-    my.entries = my.type.getEntries(attr);
+    this.type = Types.getType(attr.type);
+    this.start = attr.start;
+    this.end = attr.end;
+    this.entries = this.type.getEntries(attr);
   }
 
   Axis.prototype.getType = function() {
-    return my.type;
-  }
-
-  Axis.prototype.getStart = function() {
-    return my.start;
-  }
-
-  Axis.prototype.getEnd = function() {
-    return my.end;
+    return this.type;
   }
 
   Axis.prototype.getEntries = function() {
-    return my.entries;
+    return this.entries;
   }
 
   return Axis;

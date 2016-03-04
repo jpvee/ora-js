@@ -24,12 +24,19 @@ define('view/OraTable', ['view/Axis'], function() {
 
   OraTable.prototype.drawColumns = function() {
 
+    var entries = my.axisX.getEntries();
+    var colWidth = (my.width + 0.0) / (entries.length + 1.0);
+
     var col = document.createElement("div");
-    $(col).text('ORA-JS');
+    $(col).width(colWidth);
     $(my.tableElement).append(col);
-    for (var mom in my.axisX.getEntries()) {
+
+    for (var idx = 0, colLeft = colWidth; idx < entries.length; idx++, colLeft += colWidth) {
       col = document.createElement("div");
-      $(col).text(mom.format('DD.MM.YYYY'));
+      $(col).text(entries[idx].format('DD.MM.YYYY'));
+      $(col).addClass("orajs-col");
+      $(col).width(colWidth);
+      $(col).css("left", colLeft);
       $(my.tableElement).append(col);
     }
 
