@@ -15,27 +15,48 @@ define('view/OraTable', ['view/Axis', 'view/Orientation'], function() {
     my.axisY = new Axis(attrY, my.height, Orientation.TopToBottom);
   };
 
-  var draw = function(axis) {
+  var initAxis = function(axis, span) {
 
     var entries = axis.getEntries();
     var cellLength = axis.getEntryLength();
     var cellPos = axis.getEntryStart();
 
-    var cell = document.createElement("div");
-    axis.formatHeader(cell, cellLength);
-    $(my.tableElement).append(cell);
+    var result = 0;
 
     for (var idx = 0; idx < entries.length; idx++, cellPos += cellLength) {
-      cell = document.createElement("div");
-      axis.formatCell(cell, idx, cellPos, cellLength);
-      $(my.tableElement).append(cell);
+      var cell = document.createElement("span");
+      axis.initHeader(cell, idx);
+      $(span).append(cell);
+      result = axis.fitHeader(cell, result);
     }
 
+    return result;
+
   };
-  
+
   OraTable.prototype.drawGrid = function() {
-    draw(my.axisX);
-    draw(my.axisY);
+
+    var headerRow = document.createElement("span");
+    $(headerRow).addClass('orajs-header-row');
+    $(my.tableElement).append(headerRow);
+    var headerCol = document.createElement("span");
+    $(headerCol).addClass('orajs-header-col');
+    $(my.tableElement).append(headerCol);
+
+    my.headerRowHeight = initAxis(my.axisX, headerRow);
+    my.headerColWidth = initAxis(my.axisY, headerCol);
+    console.log(my.headerRowHeight);
+    console.log(my.headerColWidth);
+
+    var contentArea = document.createElement("span");
+    $(contentArea).addClass('orajs-content-area');
+    $(contentArea).css('left', my.headerColWidth);
+    $(contentArea).css('top', my.headerRowHeight);
+    $(contentArea).width(my.width - my.headerColWidth);
+    $(contentArea).height(my.height - my.headerRowHeight);
+
+    $(my.tableElement).append(contentArea);
+    
   };
 
   return OraTable;

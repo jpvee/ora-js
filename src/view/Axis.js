@@ -19,28 +19,28 @@ define('view/Axis', [], function() {
     this.entryStart = this.type.getEntryStart(totalLength, this.entries.length + 1, attr);
     this.entryLength = this.type.getEntryLength(totalLength, this.entries.length + 1, attr);
 
-  }
+  };
 
   Axis.prototype.getEntries = function() {
     return this.entries;
-  }
+  };
 
   Axis.prototype.getEntryLength = function() {
     return this.entryLength;
-  }
+  };
 
   Axis.prototype.getEntryStart = function () {
     return this.entryStart;
-  }
+  };
 
-  Axis.prototype.formatHeader = function(cell, cellLength) {
-    this.orientation.formatHeader(cell, cellLength);
-  }
-  
-  Axis.prototype.formatCell = function(cell, idx, cellPos, cellLength) {
+  Axis.prototype.initHeader = function(cell, idx) {
     $(cell).text(this.entries[idx].format(this.format));
-    this.orientation.formatCell(cell, cellPos, cellLength);
-  }
+    this.orientation.initHeader(cell);
+  };
+  
+  Axis.prototype.fitHeader = function(cell, result) {
+    return this.orientation.fitHeader(cell, result);
+  };
 
   return Axis;
 

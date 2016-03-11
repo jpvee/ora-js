@@ -6,34 +6,30 @@ define('view/Orientation', [], function() {
   
   Orientation.RightToLeft = {
 
-    formatHeader : function(cell, length) {
-      $(cell).addClass("orajs-header");
-      $(cell).addClass("orajs-col");
-      $(cell).css("left", 0);
-      $(cell).width(length);
+    initHeader : function(cell) {
+      $(cell).addClass("orajs-col-header");
+      // $(cell).addClass("orajs-col");
+      // $(cell).css("left", 0);
+      // $(cell).width(length);
     },
-
-    formatCell : function (cell, start, length) {
-      $(cell).addClass("orajs-col");
-      $(cell).css("left", start);
-      $(cell).width(length);
+    
+    fitHeader : function(cell, result) {
+      return Math.max(result, $(cell).outerHeight());
     }
 
   };
 
   Orientation.TopToBottom = {
 
-    formatHeader : function(cell, length) {
-      $(cell).addClass("orajs-header");
-      $(cell).addClass("orajs-row");
-      $(cell).css("top", 0);
-      $(cell).height(length);
+    initHeader : function(cell) {
+      $(cell).addClass("orajs-row-header");
+      // $(cell).addClass("orajs-row");
+      // $(cell).css("top", 0);
+      // $(cell).height(length);
     },
 
-    formatCell : function (cell, start, length) {
-      $(cell).addClass("orajs-row");
-      $(cell).css("top", start);
-      $(cell).height(length);
+    fitHeader : function(cell, result) {
+      return Math.max(result, $(cell).outerWidth());
     }
 
   };
