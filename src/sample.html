@@ -5,6 +5,7 @@
   <title>Sample ORA-JS schedule</title>
   <script src="../node_modules/jquery/dist/jquery.js"> </script>
   <script src="../node_modules/requirejs/require.js" data-main="./main.js"> </script>
+  <link href="css/orajs.css" type="text/css" rel="stylesheet"/>
   <link href="css/sample.css" type="text/css" rel="stylesheet"/>
 </head>
 
@@ -12,9 +13,14 @@
 
 <h4>This is a sample schedule created with the ORA-JS library.</h4>
 
-<div id="sample-schedule" data-orajs-name="Sample Schedule" lang="de"
-     data-orajs-x-type="date" data-orajs-x-start="2016-04-13" data-orajs-x-end="2016-04-18"
-     data-orajs-y-type="time" data-orajs-y-start="08:00" data-orajs-y-end="00:00" data-orajs-y-grid="hour">
+<div id="sample-schedule" class="orajs-table"
+     lang="de" data-orajs-name="Sample Schedule"
+
+     data-orajs-x-type="date" data-orajs-x-format="DD.MM.YYYY"
+     data-orajs-x-start="13.04.2016" data-orajs-x-end="19.04.2016"
+
+     data-orajs-y-type="time" data-orajs-y-format="H:mm"
+     data-orajs-y-start="08:30" data-orajs-y-end="0:00" data-orajs-y-grid="hour">
 
 </div>
 

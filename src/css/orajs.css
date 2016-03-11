@@ -1,0 +1,27 @@
+.orajs-table {
+  position: relative;
+  overflow: hidden;
+}
+
+.orajs-col {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-right: 1px solid #c0c0c0;
+}
+
+.orajs-col.orajs-header {
+  border-right: 1px solid #404040;
+}
+
+.orajs-row {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.orajs-row.orajs-header {
+  border-bottom: 1px solid #404040;
+}
+

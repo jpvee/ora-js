@@ -1,8 +1,9 @@
 if (typeof define !== 'function') {var define = require('amdefine')(module) }
 
-define('view/OraTable', ['view/Axis'], function() {
+define('view/OraTable', ['view/Axis', 'view/Orientation'], function() {
 
   var Axis = require('view/Axis');
+  var Orientation = require('view/Orientation');
 
   var my = {};
 
@@ -10,36 +11,31 @@ define('view/OraTable', ['view/Axis'], function() {
     my.tableElement = tableElement;
     my.width = attrTable['width'] || attrDef['width'];
     my.height = attrTable['height'] || attrDef['height'];
-    my.axisX = new Axis(attrX);
-    my.axisY = new Axis(attrY);
+    my.axisX = new Axis(attrX, my.width, Orientation.RightToLeft);
+    my.axisY = new Axis(attrY, my.height, Orientation.TopToBottom);
   };
 
-  OraTable.prototype.getWidth = function() {
-    return my.width;
-  };
+  var draw = function(axis) {
 
-  OraTable.prototype.getHeight = function() {
-    return my.height;
-  };
+    var entries = axis.getEntries();
+    var cellLength = axis.getEntryLength();
+    var cellPos = axis.getEntryStart();
 
-  OraTable.prototype.drawColumns = function() {
+    var cell = document.createElement("div");
+    axis.formatHeader(cell, cellLength);
+    $(my.tableElement).append(cell);
 
-    var entries = my.axisX.getEntries();
-    var colWidth = (my.width + 0.0) / (entries.length + 1.0);
-
-    var col = document.createElement("div");
-    $(col).width(colWidth);
-    $(my.tableElement).append(col);
-
-    for (var idx = 0, colLeft = colWidth; idx < entries.length; idx++, colLeft += colWidth) {
-      col = document.createElement("div");
-      $(col).text(entries[idx].format('DD.MM.YYYY'));
-      $(col).addClass("orajs-col");
-      $(col).width(colWidth);
-      $(col).css("left", colLeft);
-      $(my.tableElement).append(col);
+    for (var idx = 0; idx < entries.length; idx++, cellPos += cellLength) {
+      cell = document.createElement("div");
+      axis.formatCell(cell, idx, cellPos, cellLength);
+      $(my.tableElement).append(cell);
     }
 
+  };
+  
+  OraTable.prototype.drawGrid = function() {
+    draw(my.axisX);
+    draw(my.axisY);
   };
 
   return OraTable;
