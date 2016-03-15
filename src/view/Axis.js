@@ -41,6 +41,10 @@ define('view/Axis', [], function() {
   Axis.prototype.fitHeader = function(cell, result) {
     return this.orientation.fitHeader(cell, result);
   };
+  
+  Axis.prototype.spaceHeader = function(cell, index, length, otherLength) {
+    this.orientation.spaceHeader(cell, index, length, otherLength);
+  }
 
   return Axis;
 

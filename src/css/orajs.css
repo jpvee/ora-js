@@ -1,25 +1,86 @@
 .orajs-table {
   position: relative;
   overflow: hidden;
-  box-sizing: border-box;
+  border: 2px solid black;
+  /*box-sizing: border-box;*/
 }
+
+.orajs-table * {
+  /*box-sizing: border-box;*/
+}
+
+.orajs-corner-cell {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+/* *************************** */
+/*   Table header row          */
+/* *************************** */
 
 .orajs-header-row {
-  /*position: absolute;*/
-  /*top: 0;*/
-  border: 1px solid yellow;
-  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  /*border: 1px solid yellow;*/
+  /*background: #fff080;*/
+  /*box-sizing: border-box;*/
 }
+
+.orajs-col-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 10px;
+  text-align: center;
+  font-weight: bold;
+  /*border: 1px solid magenta;*/
+  /*line-height: 40px;*/
+}
+
+.orajs-header-row .orajs-col-header {
+  position: absolute;
+  top: 0;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+}
+
+/* *************************** */
+/*   Table header column       */
+/* *************************** */
 
 .orajs-header-col {
-  /*position: absolute;*/
-  /*left: 0;*/
-  border: 1px solid greenyellow;
+  position: absolute;
+  left: 0;
+  /*border: 1px solid greenyellow;*/
 }
 
-.orajs-content-area {
-  border: 1px solid blue;
+.orajs-row-header {
+  /*border-right: 1px solid black;*/
+  font-style: italic;
+  font-size: 66%;
+  color: #606060;
+  padding-left: 8px;
+  padding-right: 5px;
+}
+
+.orajs-header-col .orajs-row-header {
   position: absolute;
+  left: 0;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+}
+
+/* *************************** */
+/*   Table content area        */
+/* *************************** */
+
+.orajs-content-area {
+  /*border: 1px solid blue;*/
+  position: absolute;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
 }
 
 /*.orajs-col {*/
@@ -57,37 +118,7 @@ h4 {
 #sample-schedule {
   width: 1200px;
   height: 600px;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   margin: 10px auto;
 }
 
-.orajs-col-header {
-  /*position: relative;*/
-  /*border-bottom: 1px solid black;*/
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-right: 10px;
-  text-align: center;
-  font-weight: bold;
-  border: 1px solid magenta;
-  /*line-height: 40px;*/
-}
-
-.orajs-row-header {
-  /*border-right: 1px solid black;*/
-  font-style: italic;
-  font-size: 66%;
-  color: #606060;
-  padding-left: 8px;
-}
-
-.orajs-row:nth-child(100) {
-  color: white;
-}
-
-.orajs-dummy {
-
-  display: inline;
-  border: 1px solid orange;
-
-}

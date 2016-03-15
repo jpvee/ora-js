@@ -34,26 +34,56 @@ define('view/OraTable', ['view/Axis', 'view/Orientation'], function() {
 
   };
 
-  OraTable.prototype.drawGrid = function() {
+  var spaceAxis = function(axis, header, totalLength, otherLength) {
+
+    var cells = header.children;
+    for (index = 0; index < cells.length; index++) {
+      axis.spaceHeader(cells[index], index, totalLength / cells.length, otherLength);
+    }
+
+  }
+
+  OraTable.prototype.initGrid = function() {
+    
+    var cornerCell = document.createElement("span");
+    $(my.tableElement).append(cornerCell);
 
     var headerRow = document.createElement("span");
-    $(headerRow).addClass('orajs-header-row');
     $(my.tableElement).append(headerRow);
+
     var headerCol = document.createElement("span");
-    $(headerCol).addClass('orajs-header-col');
     $(my.tableElement).append(headerCol);
 
     my.headerRowHeight = initAxis(my.axisX, headerRow);
     my.headerColWidth = initAxis(my.axisY, headerCol);
-    console.log(my.headerRowHeight);
-    console.log(my.headerColWidth);
+
+    my.contentWidth = my.width - my.headerColWidth;
+    my.contentHeight = my.height - my.headerRowHeight;
+
+    $(cornerCell).addClass('orajs-corner-cell');
+    $(cornerCell).outerWidth(my.headerColWidth);
+    $(cornerCell).outerHeight(my.headerRowHeight);
+    
+    $(headerRow).addClass('orajs-header-row');
+    $(headerCol).addClass('orajs-header-col');
+
+    $(headerRow).outerHeight(my.headerRowHeight);
+    $(headerRow).outerWidth(my.contentWidth);
+    $(headerRow).css('left', my.headerColWidth);
+    $(headerCol).outerWidth(my.headerColWidth);
+    $(headerCol).outerHeight(my.contentHeight);
+    $(headerCol).css('top', my.headerRowHeight);
+
+    // Adjust header cells
+    spaceAxis(my.axisX, headerRow, my.contentWidth, my.headerRowHeight);
+    spaceAxis(my.axisY, headerCol, my.contentHeight, my.headerColWidth);
 
     var contentArea = document.createElement("span");
     $(contentArea).addClass('orajs-content-area');
     $(contentArea).css('left', my.headerColWidth);
     $(contentArea).css('top', my.headerRowHeight);
-    $(contentArea).width(my.width - my.headerColWidth);
-    $(contentArea).height(my.height - my.headerRowHeight);
+    $(contentArea).outerWidth(my.contentWidth);
+    $(contentArea).outerHeight(my.contentHeight);
 
     $(my.tableElement).append(contentArea);
     

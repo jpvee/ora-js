@@ -8,13 +8,16 @@ define('view/Orientation', [], function() {
 
     initHeader : function(cell) {
       $(cell).addClass("orajs-col-header");
-      // $(cell).addClass("orajs-col");
-      // $(cell).css("left", 0);
-      // $(cell).width(length);
     },
     
     fitHeader : function(cell, result) {
       return Math.max(result, $(cell).outerHeight());
+    },
+    
+    spaceHeader : function(cell, index, length, otherLength) {
+      $(cell).css('left', index * length);
+      $(cell).outerWidth(length);
+      $(cell).outerHeight(otherLength);
     }
 
   };
@@ -23,13 +26,16 @@ define('view/Orientation', [], function() {
 
     initHeader : function(cell) {
       $(cell).addClass("orajs-row-header");
-      // $(cell).addClass("orajs-row");
-      // $(cell).css("top", 0);
-      // $(cell).height(length);
     },
 
     fitHeader : function(cell, result) {
       return Math.max(result, $(cell).outerWidth());
+    },
+
+    spaceHeader : function(cell, index, length, otherLength) {
+      $(cell).css('top', index * length);
+      $(cell).outerHeight(length);
+      $(cell).outerWidth(otherLength);
     }
 
   };
