@@ -1,20 +1,15 @@
 .orajs-table {
   position: relative;
   overflow: hidden;
-  border: 2px solid black;
-  /*box-sizing: border-box;*/
-}
-
-.orajs-table * {
-  /*box-sizing: border-box;*/
+  border: 1px solid black;
 }
 
 .orajs-corner-cell {
   position: absolute;
   top: 0;
   left: 0;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
+  border-right: 1px solid #606060;
+  border-bottom: 1px solid #606060;
 }
 
 /* *************************** */
@@ -24,27 +19,25 @@
 .orajs-header-row {
   position: absolute;
   top: 0;
-  /*border: 1px solid yellow;*/
-  /*background: #fff080;*/
-  /*box-sizing: border-box;*/
+  border-bottom: 1px solid #606060;
 }
 
 .orajs-col-header {
+  position: absolute;
+  top: 0;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-right: 10px;
   text-align: center;
   font-weight: bold;
-  /*border: 1px solid magenta;*/
-  /*line-height: 40px;*/
+  border-left: 1px solid #a0a0a0;
+
 }
 
-.orajs-header-row .orajs-col-header {
-  position: absolute;
-  top: 0;
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
+.orajs-col-header:first-child {
+  border-left-width: 0;
 }
+
 
 /* *************************** */
 /*   Table header column       */
@@ -53,23 +46,22 @@
 .orajs-header-col {
   position: absolute;
   left: 0;
-  /*border: 1px solid greenyellow;*/
+  border-right: 1px solid #606060;
 }
 
 .orajs-row-header {
-  /*border-right: 1px solid black;*/
+  position: absolute;
+  left: 0;
   font-style: italic;
   font-size: 66%;
   color: #606060;
   padding-left: 8px;
   padding-right: 5px;
+  border-top: 1px solid #d0d0d0;
 }
 
-.orajs-header-col .orajs-row-header {
-  position: absolute;
-  left: 0;
-  border-right: 1px solid black;
-  border-top: 1px solid black;
+.orajs-row-header:first-child {
+  border-top-width: 0;
 }
 
 /* *************************** */
@@ -77,33 +69,30 @@
 /* *************************** */
 
 .orajs-content-area {
-  /*border: 1px solid blue;*/
   position: absolute;
-  border-top: 1px solid black;
-  border-left: 1px solid black;
 }
 
-/*.orajs-col {*/
-  /*position: absolute;*/
-  /*top: 0;*/
-  /*height: 100%;*/
-  /*border-right: 1px solid #c0c0c0;*/
-/*}*/
+.orajs-content-col {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-left: 1px solid #a0a0a0;
+}
 
-/*.orajs-col.orajs-header {*/
-  /*border-right: 1px solid #404040;*/
-/*}*/
+.orajs-content-row {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #d0d0d0;
+}
 
-/*.orajs-row {*/
-  /*position: absolute;*/
-  /*left: 0;*/
-  /*width: 100%;*/
-  /*border-bottom: 1px solid #c0c0c0;*/
-/*}*/
+.orajs-content-col:first-child {
+  border-left-width: 0;
+}
 
-/*.orajs-row.orajs-header {*/
-  /*border-bottom: 1px solid #404040;*/
-/*}*/
+.orajs-content-row:first-child {
+  border-top-width: 0;
+}
 
 /* ************************************ */
 
@@ -118,7 +107,6 @@ h4 {
 #sample-schedule {
   width: 1200px;
   height: 600px;
-  /*border: 1px solid black;*/
   margin: 10px auto;
 }
 

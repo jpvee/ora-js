@@ -44,7 +44,16 @@ define('view/Axis', [], function() {
   
   Axis.prototype.spaceHeader = function(cell, index, length, otherLength) {
     this.orientation.spaceHeader(cell, index, length, otherLength);
-  }
+  };
+  
+  Axis.prototype.fillContent = function(area, totalLength) {
+    var span = document.createElement("span");
+    $(area).append(span);
+    var length = totalLength / this.entries.length;
+    for (index = 0; index < this.entries.length; index++) {
+      this.orientation.fillContent(span, index * length, length);
+    }
+  };
 
   return Axis;
 

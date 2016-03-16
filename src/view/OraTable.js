@@ -41,9 +41,9 @@ define('view/OraTable', ['view/Axis', 'view/Orientation'], function() {
       axis.spaceHeader(cells[index], index, totalLength / cells.length, otherLength);
     }
 
-  }
-
-  OraTable.prototype.initGrid = function() {
+  };
+  
+  OraTable.prototype.drawGrid = function() {
     
     var cornerCell = document.createElement("span");
     $(my.tableElement).append(cornerCell);
@@ -63,7 +63,7 @@ define('view/OraTable', ['view/Axis', 'view/Orientation'], function() {
     $(cornerCell).addClass('orajs-corner-cell');
     $(cornerCell).outerWidth(my.headerColWidth);
     $(cornerCell).outerHeight(my.headerRowHeight);
-    
+
     $(headerRow).addClass('orajs-header-row');
     $(headerCol).addClass('orajs-header-col');
 
@@ -87,6 +87,11 @@ define('view/OraTable', ['view/Axis', 'view/Orientation'], function() {
 
     $(my.tableElement).append(contentArea);
     
+    my.axisX.fillContent(contentArea, my.contentWidth);
+    my.axisY.fillContent(contentArea, my.contentHeight);
+    
+    return contentArea;
+
   };
 
   return OraTable;

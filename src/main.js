@@ -41,9 +41,8 @@ require(['model/Dimension', 'model/TimeSpan', 'view/OraTable', 'model/Types'], f
     console.log(JSON.stringify(attrDef));
 
     var oraTable = new OraTable(this, attrTable, attrX, attrY, attrDef);
-    oraTable.initGrid()
 
-
+    var contentArea = oraTable.drawGrid();
 
   });
 

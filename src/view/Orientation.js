@@ -18,6 +18,14 @@ define('view/Orientation', [], function() {
       $(cell).css('left', index * length);
       $(cell).outerWidth(length);
       $(cell).outerHeight(otherLength);
+    },
+
+    fillContent : function(span, position, length) {
+      var gridElement = document.createElement("span");
+      $(span).append(gridElement);
+      $(gridElement).addClass('orajs-content-col');
+      $(gridElement).css('left', position);
+      $(gridElement).outerWidth(length);
     }
 
   };
@@ -36,6 +44,14 @@ define('view/Orientation', [], function() {
       $(cell).css('top', index * length);
       $(cell).outerHeight(length);
       $(cell).outerWidth(otherLength);
+    },
+
+    fillContent : function(span, position, length) {
+      var gridElement = document.createElement("span");
+      $(span).append(gridElement);
+      $(gridElement).addClass('orajs-content-row');
+      $(gridElement).css('top', position);
+      $(gridElement).outerHeight(length);
     }
 
   };
