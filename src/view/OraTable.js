@@ -11,19 +11,17 @@ define('view/OraTable', ['view/Axis', 'view/Orientation'], function() {
     my.tableElement = tableElement;
     my.width = attrTable['width'] || attrDef['width'];
     my.height = attrTable['height'] || attrDef['height'];
-    my.axisX = new Axis(attrX, my.width, Orientation.RightToLeft);
-    my.axisY = new Axis(attrY, my.height, Orientation.TopToBottom);
+    my.axisX = new Axis(attrX, Orientation.RightToLeft);
+    my.axisY = new Axis(attrY, Orientation.TopToBottom);
   };
 
   var initAxis = function(axis, span) {
 
     var entries = axis.getEntries();
-    var cellLength = axis.getEntryLength();
-    var cellPos = axis.getEntryStart();
 
     var result = 0;
 
-    for (var idx = 0; idx < entries.length; idx++, cellPos += cellLength) {
+    for (var idx = 0; idx < entries.length; idx++) {
       var cell = document.createElement("span");
       axis.initHeader(cell, idx);
       $(span).append(cell);
@@ -38,13 +36,13 @@ define('view/OraTable', ['view/Axis', 'view/Orientation'], function() {
 
     var cells = header.children;
     for (index = 0; index < cells.length; index++) {
-      axis.spaceHeader(cells[index], index, totalLength / cells.length, otherLength);
+      axis.spaceHeader(cells[index], index, otherLength);
     }
 
   };
   
-  OraTable.prototype.drawGrid = function() {
-    
+  OraTable.prototype.drawGrid = function(attrX, attrY) {
+
     var cornerCell = document.createElement("span");
     $(my.tableElement).append(cornerCell);
 
@@ -59,6 +57,9 @@ define('view/OraTable', ['view/Axis', 'view/Orientation'], function() {
 
     my.contentWidth = my.width - my.headerColWidth;
     my.contentHeight = my.height - my.headerRowHeight;
+
+    my.axisX.adjustLength(my.contentWidth, attrX);
+    my.axisY.adjustLength(my.contentHeight, attrY);
 
     $(cornerCell).addClass('orajs-corner-cell');
     $(cornerCell).outerWidth(my.headerColWidth);
@@ -87,8 +88,8 @@ define('view/OraTable', ['view/Axis', 'view/Orientation'], function() {
 
     $(my.tableElement).append(contentArea);
     
-    my.axisX.fillContent(contentArea, my.contentWidth);
-    my.axisY.fillContent(contentArea, my.contentHeight);
+    my.axisX.fillContent(contentArea);
+    my.axisY.fillContent(contentArea);
     
     return contentArea;
 

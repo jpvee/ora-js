@@ -2,7 +2,7 @@ if (typeof define !== 'function') {var define = require('amdefine')(module) }
 
 define('view/Axis', [], function() {
 
-  var Axis = function(attr, totalLength, orientation) {
+  var Axis = function(attr, orientation) {
 
     var Types = require("model/Types");
 
@@ -13,13 +13,15 @@ define('view/Axis', [], function() {
     this.orientation = orientation;
     this.format = attr.format || this.type.getDefaultFormat();
 
-    this.totalLength = totalLength;
-
     this.entries = this.type.getEntries(attr);
-    this.entryStart = this.type.getEntryStart(totalLength, this.entries.length + 1, attr);
-    this.entryLength = this.type.getEntryLength(totalLength, this.entries.length + 1, attr);
 
   };
+
+  Axis.prototype.adjustLength = function(length, attr) {
+    this.length = length;
+    this.entryStart = this.type.getEntryStart(length, this.entries.length, attr);
+    this.entryLength = this.type.getEntryLength(length, this.entries.length, attr);
+  }
 
   Axis.prototype.getEntries = function() {
     return this.entries;
@@ -42,16 +44,15 @@ define('view/Axis', [], function() {
     return this.orientation.fitHeader(cell, result);
   };
   
-  Axis.prototype.spaceHeader = function(cell, index, length, otherLength) {
-    this.orientation.spaceHeader(cell, index, length, otherLength);
+  Axis.prototype.spaceHeader = function(cell, index, otherLength) {
+    this.orientation.spaceHeader(cell, this.entryStart, index, this.entryLength, otherLength);
   };
   
-  Axis.prototype.fillContent = function(area, totalLength) {
+  Axis.prototype.fillContent = function(area) {
     var span = document.createElement("span");
     $(area).append(span);
-    var length = totalLength / this.entries.length;
     for (index = 0; index < this.entries.length; index++) {
-      this.orientation.fillContent(span, index * length, length);
+      this.orientation.fillContent(span, this.entryStart, index, this.entryLength);
     }
   };
 

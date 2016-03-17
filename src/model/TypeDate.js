@@ -28,15 +28,15 @@ define('model/TypeDate', ['moment'], function() {
   
   TypeDate.getDefaultFormat = function() {
     return DEFAULT_FORMAT;
-  }
+  };
 
   TypeDate.getEntryStart = function(totalLength, entryCount, attr) {
-    return TypeDate.getEntryLength(totalLength, entryCount, attr)
-  }
+    return 0;
+  };
 
   TypeDate.getEntryLength = function(totalLength, entryCount, attr) {
     return (totalLength + 0.0) / entryCount;
-  }
+  };
   
   return TypeDate;
 

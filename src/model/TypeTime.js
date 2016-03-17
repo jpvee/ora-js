@@ -52,9 +52,8 @@ define('model/TypeTime', ['moment'], function() {
 
     var time = start.clone();
     if (attr.grid == 'hour') {
-      var total = totalLength * (entryCount - 1) / entryCount;
-      time.minute(0).add(1, 'hours');
-      return diffToLength(start, time, end, total);
+      time.minute(0);
+      return diffToLength(start, time, end, totalLength);
     }
 
     return TypeTime.getEntryLength(totalLength, entryCount, attr);
@@ -72,7 +71,7 @@ define('model/TypeTime', ['moment'], function() {
         end.add(1, 'days');
       }
 
-      return totalLength / (1 + end.diff(start) / HOUR_IN_MILLIS);
+      return totalLength / (end.diff(start) / HOUR_IN_MILLIS);
     }
 
     return (totalLength + 0.0) / entryCount;

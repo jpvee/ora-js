@@ -14,17 +14,17 @@ define('view/Orientation', [], function() {
       return Math.max(result, $(cell).outerHeight());
     },
     
-    spaceHeader : function(cell, index, length, otherLength) {
-      $(cell).css('left', index * length);
+    spaceHeader : function(cell, offset, index, length, otherLength) {
+      $(cell).css('left', offset + index * length);
       $(cell).outerWidth(length);
       $(cell).outerHeight(otherLength);
     },
 
-    fillContent : function(span, position, length) {
+    fillContent : function(span, offset, index, length) {
       var gridElement = document.createElement("span");
       $(span).append(gridElement);
       $(gridElement).addClass('orajs-content-col');
-      $(gridElement).css('left', position);
+      $(gridElement).css('left', offset + index * length);
       $(gridElement).outerWidth(length);
     }
 
@@ -40,17 +40,17 @@ define('view/Orientation', [], function() {
       return Math.max(result, $(cell).outerWidth());
     },
 
-    spaceHeader : function(cell, index, length, otherLength) {
-      $(cell).css('top', index * length);
+    spaceHeader : function(cell, offset, index, length, otherLength) {
+      $(cell).css('top', offset + index * length);
       $(cell).outerHeight(length);
       $(cell).outerWidth(otherLength);
     },
 
-    fillContent : function(span, position, length) {
+    fillContent : function(span, offset, index, length) {
       var gridElement = document.createElement("span");
       $(span).append(gridElement);
       $(gridElement).addClass('orajs-content-row');
-      $(gridElement).css('top', position);
+      $(gridElement).css('top', offset + index * length);
       $(gridElement).outerHeight(length);
     }
 

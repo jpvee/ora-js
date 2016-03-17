@@ -18,6 +18,7 @@
 
 .orajs-header-row {
   position: absolute;
+  overflow: hidden;
   top: 0;
   border-bottom: 1px solid #606060;
 }
@@ -45,6 +46,7 @@
 
 .orajs-header-col {
   position: absolute;
+  overflow: hidden;
   left: 0;
   border-right: 1px solid #606060;
 }
@@ -70,6 +72,7 @@
 
 .orajs-content-area {
   position: absolute;
+  overflow: hidden;
 }
 
 .orajs-content-col {
