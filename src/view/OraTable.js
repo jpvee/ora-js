@@ -1,30 +1,33 @@
-if (typeof define !== 'function') {var define = require('amdefine')(module) }
+if (typeof define !== 'function') {
+  var define = require('amdefine')(module)
+}
 
-define('view/OraTable', ['view/Axis', 'view/Orientation'], function() {
+define('view/OraTable', ['view/Axis', 'view/Orientation', 'view/OraCell'], function () {
 
   var Axis = require('view/Axis');
   var Orientation = require('view/Orientation');
+  var OraCell = require('view/OraCell');
 
-  var my = {};
+  var OraTable = function (tableElement, attrTable, attrX, attrY, attrDef) {
 
-  var OraTable = function(tableElement, attrTable, attrX, attrY, attrDef) {
-    my.tableElement = tableElement;
-    my.width = attrTable['width'] || attrDef['width'];
-    my.height = attrTable['height'] || attrDef['height'];
-    my.axisX = new Axis(attrX, Orientation.RightToLeft);
-    my.axisY = new Axis(attrY, Orientation.TopToBottom);
+    this._tableElement = tableElement;
+    this._width = attrTable['width'] || attrDef['width'];
+    this._height = attrTable['height'] || attrDef['height'];
+    this._axisX = new Axis(attrX, Orientation.RightToLeft);
+    this._axisY = new Axis(attrY, Orientation.TopToBottom);
+
   };
 
-  var initAxis = function(axis, span) {
+  OraTable.prototype._initAxis = function (axis, div) {
 
     var entries = axis.getEntries();
 
     var result = 0;
 
     for (var idx = 0; idx < entries.length; idx++) {
-      var cell = document.createElement("span");
+      var cell = document.createElement("div");
       axis.initHeader(cell, idx);
-      $(span).append(cell);
+      $(div).append(cell);
       result = axis.fitHeader(cell, result);
     }
 
@@ -32,7 +35,7 @@ define('view/OraTable', ['view/Axis', 'view/Orientation'], function() {
 
   };
 
-  var spaceAxis = function(axis, header, totalLength, otherLength) {
+  OraTable.prototype._spaceAxis = function (axis, header, totalLength, otherLength) {
 
     var cells = header.children;
     for (index = 0; index < cells.length; index++) {
@@ -40,58 +43,85 @@ define('view/OraTable', ['view/Axis', 'view/Orientation'], function() {
     }
 
   };
-  
-  OraTable.prototype.drawGrid = function(attrX, attrY) {
 
-    var cornerCell = document.createElement("span");
-    $(my.tableElement).append(cornerCell);
+  OraTable.prototype._placeCell = function (cell, contentArea, axis) {
 
-    var headerRow = document.createElement("span");
-    $(my.tableElement).append(headerRow);
+    axis.placeCell(cell, contentArea)
 
-    var headerCol = document.createElement("span");
-    $(my.tableElement).append(headerCol);
+  };
 
-    my.headerRowHeight = initAxis(my.axisX, headerRow);
-    my.headerColWidth = initAxis(my.axisY, headerCol);
+  OraTable.prototype.drawGrid = function (attrX, attrY) {
 
-    my.contentWidth = my.width - my.headerColWidth;
-    my.contentHeight = my.height - my.headerRowHeight;
+    var cornerCell = document.createElement("div");
+    $(this._tableElement).append(cornerCell);
 
-    my.axisX.adjustLength(my.contentWidth, attrX);
-    my.axisY.adjustLength(my.contentHeight, attrY);
+    var headerRow = document.createElement("div");
+    $(this._tableElement).append(headerRow);
+
+    var headerCol = document.createElement("div");
+    $(this._tableElement).append(headerCol);
+
+    this._headerRowHeight = this._initAxis(this._axisX, headerRow);
+    this._headerColWidth = this._initAxis(this._axisY, headerCol);
+
+    this._contentWidth = this._width - this._headerColWidth;
+    this._contentHeight = this._height - this._headerRowHeight;
+
+    this._axisX.adjustLength(this._contentWidth, attrX);
+    this._axisY.adjustLength(this._contentHeight, attrY);
 
     $(cornerCell).addClass('orajs-corner-cell');
-    $(cornerCell).outerWidth(my.headerColWidth);
-    $(cornerCell).outerHeight(my.headerRowHeight);
+    $(cornerCell).outerWidth(this._headerColWidth);
+    $(cornerCell).outerHeight(this._headerRowHeight);
 
     $(headerRow).addClass('orajs-header-row');
     $(headerCol).addClass('orajs-header-col');
 
-    $(headerRow).outerHeight(my.headerRowHeight);
-    $(headerRow).outerWidth(my.contentWidth);
-    $(headerRow).css('left', my.headerColWidth);
-    $(headerCol).outerWidth(my.headerColWidth);
-    $(headerCol).outerHeight(my.contentHeight);
-    $(headerCol).css('top', my.headerRowHeight);
+    $(headerRow).outerHeight(this._headerRowHeight);
+    $(headerRow).outerWidth(this._contentWidth);
+    $(headerRow).css('left', this._headerColWidth);
+    $(headerCol).outerWidth(this._headerColWidth);
+    $(headerCol).outerHeight(this._contentHeight);
+    $(headerCol).css('top', this._headerRowHeight);
 
     // Adjust header cells
-    spaceAxis(my.axisX, headerRow, my.contentWidth, my.headerRowHeight);
-    spaceAxis(my.axisY, headerCol, my.contentHeight, my.headerColWidth);
+    this._spaceAxis(this._axisX, headerRow, this._contentWidth, this._headerRowHeight);
+    this._spaceAxis(this._axisY, headerCol, this._contentHeight, this._headerColWidth);
 
-    var contentArea = document.createElement("span");
+    var contentArea = document.createElement("div");
     $(contentArea).addClass('orajs-content-area');
-    $(contentArea).css('left', my.headerColWidth);
-    $(contentArea).css('top', my.headerRowHeight);
-    $(contentArea).outerWidth(my.contentWidth);
-    $(contentArea).outerHeight(my.contentHeight);
+    $(contentArea).css('left', this._headerColWidth);
+    $(contentArea).css('top', this._headerRowHeight);
+    $(contentArea).outerWidth(this._contentWidth);
+    $(contentArea).outerHeight(this._contentHeight);
 
-    $(my.tableElement).append(contentArea);
-    
-    my.axisX.fillContent(contentArea);
-    my.axisY.fillContent(contentArea);
-    
+    $(this._tableElement).append(contentArea);
+
+    this._axisX.fillContent(contentArea);
+    this._axisY.fillContent(contentArea);
+
     return contentArea;
+
+  };
+
+  OraTable.prototype.placeCells = function (contentArea) {
+
+    var $this = this;
+
+    $(this._tableElement).children('.orajs-cell').each(function () {
+
+      var attr = {};
+      $.each(this.attributes, function (i, att) {
+        if (att.name.startsWith('data-orajs-')) {
+          attr[att.name.substr(11)] = att.value;
+        }
+      });
+      var cell = new OraCell(attr);
+
+      $this._placeCell(cell, contentArea, $this._axisX);
+      $this._placeCell(cell, contentArea, $this._axisY);
+
+    });
 
   };
 

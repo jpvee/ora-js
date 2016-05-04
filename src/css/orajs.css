@@ -97,6 +97,20 @@
   border-top-width: 0;
 }
 
+/* *************************** */
+/*   Table cells               */
+/* *************************** */
+
+.orajs-cell {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  opacity: 100;
+  border: 1px solid black;
+  box-shadow: 3px 3px 5px #667788;
+  border-radius: 0.5em;
+}
+
 /* ************************************ */
 
 * {

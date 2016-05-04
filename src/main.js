@@ -7,10 +7,8 @@ require.config({
 	}
 });
 
-require(['model/Dimension', 'model/TimeSpan', 'view/OraTable', 'model/Types'], function() {
+require(['view/OraTable', 'model/Types'], function() {
 
-  var Dimension = require('model/Dimension');
-  var TimeSpan = require('model/TimeSpan');
   var OraTable = require('view/OraTable');
 
 	$('[data-orajs-name]').each(function() {
@@ -43,6 +41,7 @@ require(['model/Dimension', 'model/TimeSpan', 'view/OraTable', 'model/Types'], f
     var oraTable = new OraTable(this, attrTable, attrX, attrY, attrDef);
 
     var contentArea = oraTable.drawGrid(attrX, attrY);
+    oraTable.placeCells(contentArea);
 
   });
 
